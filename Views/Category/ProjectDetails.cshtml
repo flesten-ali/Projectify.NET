@@ -1,0 +1,188 @@
+﻿@model Practice.Models.Project
+@* <div>
+    <div class="m-3 p-2">
+        <h3>Project Title: @Model.Title</h3>
+    </div>
+    <hr />
+    <div class= "m-3 p-2">
+        <h3>Project Discription:  @Model.Discreption</h3>
+    </div>
+    <hr />
+
+    @if (Model.pdfURL != null)
+    {
+        <div class="m-3 p-2">
+
+            @if (Model.pdfURL != null && Model.pdfURL.Length > 0)
+            {
+                var lastIndex = Model.pdfURL.LastIndexOf('/');
+                var pdfFileName = Model.pdfURL.Substring(lastIndex + 1);
+
+                // Constructing the absolute URL for the PDF
+                var absolutePdfUrl = "/PDF/" + pdfFileName;
+
+                <a href="@absolutePdfUrl" target="_blank">
+                    Open Project
+                </a>
+
+            }
+        </div>    <hr />
+
+    }
+    else
+    {
+        <div class= "m-3 p-2">
+            <h3>
+                No PDF file provided for this project
+            </h3>
+        </div>
+
+    }
+
+    <div class= "m-3 p-2">
+        <h3>Project Owner: @Model.User?.UserName</h3>
+    </div>
+
+
+
+
+</div>
+
+
+<div "m-3 p-2">
+    <a class="btn btn-primary mt-3" asp-controller="Contact" asp-action="ContactEmail">Contact @Model.User?.UserName </a>
+</div>
+
+
+
+<div "m-3 p-2">
+    <a class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+}
+
+ *@
+
+@* -------------------------- *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {
+            height: 100vh
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            height: 100vh;
+        }
+
+
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @@media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <partial name="_Notification" />
+    <div class="container-fluid">
+        <div class="row content" style="z-index:-1;background-color:transparent;padding-top:0px">
+            <div class="col-sm-3 sidenav" style="margin-top: 110px;background: linear-gradient(-135deg,#5f1db57a, #388da896,#5f1db57a, #ffc1079e) !important;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li style="background-color:transparent;color:white">
+                        <a style="color:white">
+                            Title :            @Html.DisplayFor(model => model.Title)
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color:white">
+                            Category:             @Html.DisplayFor(model => model.Category.category)
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color:white">
+                            Project Owner: @Model.User?.UserName
+                        </a>
+                    </li>
+                    
+
+                   
+
+                    <li>
+                        @if (Model.pdfURL != null && Model.pdfURL.Length > 0)
+                        {
+                            var lastIndex = Model.pdfURL.LastIndexOf('/');
+                            var pdfFileName = Model.pdfURL.Substring(lastIndex + 1);
+
+                            // Constructing the absolute URL for the PDF
+                            var absolutePdfUrl = "/PDF/" + pdfFileName;
+
+                            <a style="color:white" href="@absolutePdfUrl" target="_blank">
+                                Open Project
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a style="color:white">No PDF file provided</a>
+                        }
+                       
+
+                    </li>
+
+
+
+
+                </ul>
+                <div style="display:flex;justify-content:center" >
+
+                    <a   style="color:white;display:block;width:100px" class="btn btn-primary mt-3" asp-controller="Contact" asp-action="ContactEmail">Contact @Model.User?.UserName </a>
+                </div>
+                <div style="display:flex;justify-content:center">
+                    <a style="color:white;display:block;width:100px" class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
+                </div>
+            <br>
+        </div>
+ 
+            
+               
+
+ 
+            <div class="col-sm-9" style="margin-top:-200PX">
+                <h2>Project Description </h2>
+                <h5><span class="glyphicon glyphicon-time"></span> added at @Html.DisplayFor(x => x.DateOfPublish) .</h5>
+                <p style="padding:20px 0px"> @Html.DisplayFor(x => x.Discreption) </p>
+                <br><br>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

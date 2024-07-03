@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+@model dynamic
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading...</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      
+
+     <link  rel="stylesheet" href="~/css/loading.css"/>
+
+
+     <script type="text/javascript">
+
+        
+        $(window).on('load', function () {
+            $("#content").hide();
+        });
+
+        $(document).ready(function () {
+            $("#btnClickMe").click(function () {
+                $("#content").show();
+            });
+        });
+        $(document).ready(function () {
+            $('#autoSubmitForm').submit();
+        });
+    </script>
+</head>
+<body>
+
+    <form method="post" id="autoSubmitForm">
+        <div class="content" id="content">
+        <div class="load-wrapp">
+            <div class="load-1">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    
+        @* <div>
+            <button type="submit" id="btnClickMe">Click Me</button>
+            <br /><br /><br /><br />
+        </div> *@
+     </form>
+
+
+     
+</body>
+</html>

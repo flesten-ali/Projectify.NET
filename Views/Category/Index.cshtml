@@ -1,0 +1,66 @@
+﻿@model Practice.Models.Category
+
+
+<html>
+
+
+    <head>
+
+       <style>
+          
+       </style>
+
+
+    </head>
+
+    <body>
+ 
+
+ 
+        <div style="padding-top:200px;margin:20px;" >
+
+         <div class="col-md-12 row" style="text-align:center">
+            <h4>Choose the project category</h4>
+        </div>
+        <img src="./images/User interface research (1).gif" style="position:absolute;bottom:-50px" />
+
+        <div class="row col-md-12" >
+
+            <form asp-action="Index" style="display:flex;justify-content:center;align-items:center">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:flex;justify-content:center;align-items:center">
+                <select  style="width:500px" class="form-select" id="single-select-field" data-placeholder="Choose one thing" placeholder="Select Category" asp-for="categoryId" class="form-control" asp-items="ViewBag.categorylist">
+                </select>
+                <span asp-validation-for="categoryId" class="text-danger"></span>
+            </div>
+                <div class="form-group"style="margin-left:20px" >
+                    <input type="submit" style="background-color:#388da8;border:none" value="Search" class="btn btn-primary" />
+                </div>
+        </form>
+            <div style="display:flex;justify-content:center;align-items:center;margin-top:20px">
+                <a asp-action="Index" asp-controller="Home">Back to Home</a>
+            </div>
+</div>
+     
+    </div>
+
+ <script>
+    $('#single-select-field').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+    });
+    
+</script>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+}
+
+
+
+
+</body>
+
+</html>

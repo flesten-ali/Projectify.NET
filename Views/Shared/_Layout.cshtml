@@ -1,0 +1,339 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager;
+@inject   UserManager<IdentityUser> userManager;
+
+
+
+ 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title style="font-family:sans-serif">Projectify</title>
+
+
+
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*     bootswatches themes*@
+@*     <link rel="stylesheet" href="~/css/bootsWatch.css" asp-append-version="true" />
+ *@    @* minified file for  toastr  notification *@
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+ *@    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="~/Practice.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/loading.css" asp-append-version="true" />
+
+
+
+
+        <!-- Favicons -->
+        <link href="~/images/logo.svg" rel="icon">
+        <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <!-- Main CSS File -->
+        <link href="~/assets/css/main.css" rel="stylesheet">
+
+
+
+        <style>
+
+            header {
+                background: /* /*  linear-gradient(-135deg, #c850c0, #4158d0) */ linear-gradient(-135deg,#5f1db57a, #388da896,#5f1db57a, #ffc1079e) !important;
+            }
+
+            nav a {
+                color: white !important;
+            }
+
+            a.btn-getstarted , a.cor{
+                background-color: #388da8 !important;
+                margin-right: -20px !important;
+
+                border:none;
+            }
+
+            @@media (max-width: 1200px) {
+                .header .btn-getstarted {
+                    order: 2;
+                    margin: 0 15px 0 0 !important;
+                    padding: 6px 15px;
+                }
+            }
+
+            section {
+                margin-bottom: 60px !important;
+            }
+            a { 
+                text-decoration:none !important;
+            }
+        </style>
+
+      
+</head>
+    <body class="index-page" data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
+
+
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+                <a  style="text-decoration:none" class="logo d-flex align-items-center me-auto">
+                    <img src="~/images/logo.svg" alt="" height="70px" width="70px">
+                    <h1 class="sitename">Projectify</h1>
+
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+
+
+                    <li><a asp-controller="Home" asp-action="Index">Contact</a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <div class="text-light m-2">
+                    <img src="./images/profile.png" style="width:25px;height:25px;border-radius:50%" />
+@*                     <a class="btn"   style="color:white;font-family:sans-serif;border-color:white;margin:0px 4px" >  @User?.Identity?.Name </a>
+ *@
+                </div>
+                <div class="d-flex m-2">
+                    <a class="btn btn-primary me-2 cor" asp-controller="Account" asp-action="Logout">Logout</a>
+                </div>
+            }
+            else
+            {
+                <a class="btn-getstarted" asp-controller="Account" asp-action="Login">Sign In</a>
+                <a class="btn-getstarted" asp-controller="Account" asp-action="Register">Sign Up</a>
+            }
+
+
+                  
+           
+            </div>
+        </header>
+
+
+
+
+@* 
+
+    <div class="content" id="content">
+        <div class="load-wrapp">
+            <div class="load-1">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+ *@
+
+
+@* 
+
+    <div id="all" style="display:none"> *@
+           
+      
+@*     <header  >
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+      <img src="./images//logo.net.svg" style="width:100px"/> *@
+@*      <a class="navbar-brand"  style="font-size:22px;color:white"> Project Hub</a>
+ *@   @*  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li> *@
+
+                       @*  @if (signInManager .IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Model1" asp-action="Index">ModleDatebase</a>
+                                
+                             </li>
+                         } *@
+
+
+                      @*   @if (signInManager.IsSignedIn(User))
+                        {
+                            var user = await userManager.GetUserAsync(User);
+                            var isInRole = await userManager.IsInRoleAsync(user, "SuperAdmin");
+                            if (isInRole)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">Projects</a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="AddCategories" asp-action="Index">Categories</a>
+
+                                </li>
+                            }
+                        } *@
+
+         @* 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </li>
+      </ul>
+ *@
+
+      @* <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" fdprocessedid="i5cly">Search</button>
+      </form>
+
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <div class="text-light m-2">
+                            <a asp-action="Index" asp-controller="Projects">   @User?.Identity?.Name </a>
+                            <div class="nav-item">
+                                <a asp-action="Index" asp-controller="Projects">   Projects </a>
+
+                            </div>
+                        </div>
+                        <div class="d-flex m-2">
+                            <a class="btn btn-primary me-2" asp-controller="Account" asp-action="Logout">Logout</a>
+                         </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex m-2">
+                            <a class="btn btn-primary me-2" asp-controller="Account" asp-action="Register">Register</a>
+                            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+                        </div>
+                    }
+
+ *@
+      
+
+    @* </div>
+  </div>
+</nav>
+         
+    </header> *@
+
+
+
+
+
+@*     <div class="container">
+ *@@*         <main role="main" class="pb-3">
+ *@            <partial name="_Notification" />
+
+             @*<p>Render Start </p>*@
+             @RenderBody()
+           @* <p>Render end </p>*@
+
+@*         </main>
+ *@    @* </div> *@
+
+
+
+
+@* Loader
+ *@
+  @*   <div class="content">
+        <div class="load-wrapp">
+            <div class="load-1">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+ *@
+
+
+   
+
+@* 
+    <footer class="footer text-muted fw-bold h5" style="margin-top:100px">
+        <div class="container">
+            &copy; Made by Falastin Bawaqna  
+        </div>
+    </footer> *@
+
+ 
+@*     </div>
+ *@
+
+
+  
+    <!-- Preloader -->
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+@*     <script src="~/assets/js/main.js"></script>
+ *@ 
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 
+
+@*     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // When the DOM is fully loaded, hide the loader and show the content
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('all').style.display = 'block';
+        });
+    </script> *@
+
+
+  
+
+ 
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+  
+    
+</body>
+</html>

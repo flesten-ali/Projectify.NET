@@ -1,0 +1,198 @@
+﻿@model Practice.Models.Project
+
+@{
+    Layout = null;
+}
+
+ 
+@*  <hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+             <input asp-for ="userId" value="@ViewBag.userId" hidden />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discreption" class="control-label"></label>
+                <textarea asp-for="Discreption" class="form-control" ></textarea>
+                <span asp-validation-for="Discreption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PDFfile" class="control-label"></label>
+                <input asp-for="PDFfile" type="file" class="form-control" />
+                <span asp-validation-for="PDFfile" class="text-danger"></span>
+            </div>
+ 
+            <div class="form-group">
+                <label asp-for="categoryId" class="control-label"></label>
+                <select placeholder="Select Category" asp-for="categoryId" class="form-control" asp-items="ViewBag.categorylist">
+                
+                </select>
+                <span asp-validation-for="categoryId" class="text-danger"></span>
+
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+
+
+ *@
+
+
+
+
+                @* ------------------------------------ *@
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/bootsWatch.css" asp-append-version="true" />
+
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="~/SignUp/fonts/linearicons/style.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/SignUp/css/style.css">
+    @*     bootswatches themes*@
+
+    <style>
+
+        button {
+            background-color: #388da8;
+        }
+
+        .image-1 {
+            position: absolute;
+            bottom: -12px;
+            left: -340px;
+            z-index: 99;
+            animation: move 3s ease;
+        }
+
+    /*     @@keyframes move {
+            0% {
+                bottom: -12px;
+                left: 0px;
+            }
+
+            100% {
+                bottom: -12px;
+                left: -400px;
+            }
+        } */
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="inner">
+            <div asp-validation-summary="ModelOnly" class="danger text-danger"></div>
+            <img src="~/images/Man thinking Something.gif" alt="" class="image-1">
+
+
+            <form method="post" asp-action="Create" enctype="multipart/form-data">
+                 <input asp-for="userId" value="@ViewBag.userId" hidden />
+
+
+
+
+                <div class="form-holder">
+
+
+
+ 
+                    <input type="text" class="form-control" placeholder="Title of the project"   asp-for="Title">
+                </div>
+                <span  style="margin-bottom:10px" asp-validation-for="Title" class="danger text-danger"></span>
+
+
+
+
+
+                <div class="form-holder" style="width:100%">
+
+                     <textarea    type="text" style="width:100%;height:150px"  class="form-control" asp-for="Discreption" placeholder="Discreption"></textarea>
+
+                </div>
+                <span asp-validation-for="Discreption" style="margin-bottom:10px;display:block" class=" danger text-danger"></span>
+
+
+
+
+                <div class="form-holder">
+
+   
+
+                     <input type="file" class="form-control" asp-for="PDFfile" placeholder="PDFfile">
+                </div>
+
+                <span asp-validation-for="PDFfile" class="danger text-danger"></span>
+
+
+
+
+                <div class="form-holder">
+ 
+                     <select placeholder="Select Category" asp-for="categoryId" class="form-control" asp-items="ViewBag.categorylist">
+                        <option value="-1" disabled> Project Category </option>
+                    </select>
+ 
+
+
+                 </div>
+
+                <span asp-validation-for="categoryId" class="danger text-danger"></span>
+
+
+
+
+ 
+
+
+                <button type="submit">
+                    <span>Create</span>
+                </button>
+
+
+            </form>
+            <img src="~/SignUp/images/image-2.png" alt="" class="image-2">
+        </div>
+
+    </div>
+
+    <script src="~/SignUp/js/jquery-3.3.1.min.js"></script>
+    <script src="js/main.js"></script>
+
+    @{
+
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+
+</body>
+</html>

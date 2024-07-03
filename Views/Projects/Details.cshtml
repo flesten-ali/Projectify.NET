@@ -1,0 +1,146 @@
+﻿@model Practice.Models.Project
+ 
+ 
+@* 
+<h1>Details</h1>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Discreption)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Discreption)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pdfURL)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pdfURL)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.category)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.projectId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+} *@
+
+
+
+
+            @* -------------------------- *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 100vh}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+       height: 100vh;
+     }
+    
+ 
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @@media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+                 
+                
+            }
+      .row.content {height: auto;} 
+    }
+
+    body  {
+        font-family:sans-serif;
+        font-size:18px;
+    }
+  </style>
+</head>
+<body  >
+
+<div class="container-fluid"  >
+        <div class="row content" style="z-index:-1;background-color:transparent;padding-top:0px">
+            <div class="col-sm-3 sidenav" style="margin-top: 110px;background: linear-gradient(-135deg,#5f1db57a, #388da896,#5f1db57a, #ffc1079e) !important;">
+       <ul class="nav nav-pills nav-stacked">
+                    <li  style="background-color:transparent;color:white" >
+                        <a   style="color:white"  >
+                            Title :            @Html.DisplayFor(model => model.Title)
+                        </a>
+                    </li>
+                    <li>
+                        <a  style="color:white">
+                            Category:             @Html.DisplayFor(model => model.Category.category)
+                        </a>
+                    </li>
+                    <li>
+                        @if (Model.pdfURL != null && Model.pdfURL.Length > 0)
+                        {
+                            var lastIndex = Model.pdfURL.LastIndexOf('/');
+                            var pdfFileName = Model.pdfURL.Substring(lastIndex + 1);
+
+                            // Constructing the absolute URL for the PDF
+                            var absolutePdfUrl = "/PDF/" + pdfFileName;
+
+                            <a style="color:white" href="@absolutePdfUrl" target="_blank">
+                                Open Project
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a style="color:white">No PDF file provided</a>
+                        }
+@*                         <a style="color:white">  PDF:  @Html.DisplayFor(model => model.pdfURL)</a>
+ *@                        
+                    
+                    </li>
+
+
+
+       </ul><br>
+     
+    </div>
+
+    <div class="col-sm-9" style="margin-top:-200PX">
+       <h2>Project Description </h2>
+      <h5><span class="glyphicon glyphicon-time"></span> added at @Html.DisplayFor(x=>x.DateOfPublish) .</h5>
+                 <p style="padding:20px 0px"> @Html.DisplayFor(x => x.Discreption) </p>
+      <br><br>
+       
+    </div>
+  </div>
+</div>
+
+ 
+
+</body>
+</html>

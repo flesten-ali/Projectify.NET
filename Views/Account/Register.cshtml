@@ -1,0 +1,181 @@
+﻿@model Account
+@{
+	Layout = null;
+}
+@* 
+<div class="row col-12 col-lg-6">
+       <div asp-validation-summary="ModelOnly" class="danger text-danger">
+
+     </div>  
+     <h1>Registration Form</h1>
+       <form method="post">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+            <input class="form-control" id="username" type="text" asp-for="Username" />
+            <span asp-validation-for="Username" class="danger text-danger"></span>
+      </div>
+
+      <div>
+        <label class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" asp-for="Email"/>
+            <span asp-validation-for="Email" class="danger text-danger"></span>
+
+      </div>
+        <div>
+            <label class="form-label">University</label>
+            <input type="text" id="University" class="form-control" asp-for="University" />
+            <span asp-validation-for="University" class="danger text-danger"></span>
+        </div>
+    <div>
+        <label class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password" class="danger text-danger"></span>
+        
+    </div>
+        <div>
+            <label class="form-label">Confirm Password</label>
+            <input type="password" id="ConfirmPassword" class="form-control" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="danger text-danger"></span>
+
+        </div>
+
+    <div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    </form>
+   
+
+</div>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+} *@
+
+
+
+            @* ---------- *@
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/bootsWatch.css" asp-append-version="true" />
+
+	<!-- LINEARICONS -->
+	<link rel="stylesheet" href="~/SignUp/fonts/linearicons/style.css">
+
+	<!-- STYLE CSS -->
+	<link rel="stylesheet" href="~/SignUp/css/style.css">
+    @*     bootswatches themes*@
+    
+    <style>
+       
+        button{
+            background-color: #388da8;
+        }
+
+        .image-1 {
+            position: absolute;
+            /*bottom: -12px;
+            left: -191px;*/
+            z-index: 99;
+            animation: move 3s ease;
+        }  
+            
+        @@keyframes move {
+            0% {
+                bottom: -12px;
+                left: 0px;
+            }
+
+            100% {
+                bottom: -12px;
+                left: -191px;
+            }
+        }
+  
+
+
+ 
+
+    </style>
+
+ </head>
+
+<body>
+
+	<div class="wrapper" >
+		<div class="inner">
+			<div asp-validation-summary="ModelOnly" class="danger text-danger"></div>
+			<img src="~/SignUp/images/image-1.png" alt="" class="image-1">
+
+
+			<form method="post">
+				<h3>New Account?</h3>
+
+				<div class="form-holder">
+					<span  class="lnr lnr-user span"></span>
+ 					<input type="text" class="form-control" placeholder="Username" id="username" asp-for="Username">
+ 
+				</div>
+                <span asp-validation-for="Username" class="danger text-danger"></span>
+
+
+				<div class="form-holder">
+
+                    <span class="lnr lnr-phone-handset span"></span>
+                        <input type="email" id="email" class="form-control" asp-for="Email" placeholder="Email">
+  
+ 				</div>
+                <span asp-validation-for="Email" class="danger text-danger"></span>
+
+
+
+
+				<div class="form-holder">
+                    <span class="lnr lnr-envelope span"></span>
+					<input type="text" id="University" class="form-control" asp-for="University" placeholder="University">
+  				</div>
+
+                <span asp-validation-for="University" class="danger text-danger"></span>
+
+				<div class="form-holder">
+                    <span class="lnr lnr-lock span"></span>
+                    <input type="password" id="password" class="form-control" placeholder="Password" asp-for="Password">
+ 				</div>
+
+                <span asp-validation-for="Password" class="danger text-danger"></span>
+
+
+				<div class="form-holder">
+					<span class="lnr lnr-lock span"></span>
+                    <input type="password" id="ConfirmPassword" class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password" />
+ 
+ 				</div>
+                <span asp-validation-for="ConfirmPassword" class="danger text-danger"></span>
+
+
+
+                <button type="submit">
+					<span>Register</span>
+				</button>
+
+
+			</form>
+            <img src="~/SignUp/images/image-2.png" alt="" class="image-2">
+		</div>
+
+	</div>
+
+	<script src="~/SignUp/js/jquery-3.3.1.min.js"></script>
+	<script src="js/main.js"></script>
+  
+        @{
+ 
+            <partial name="_ValidationScriptsPartial"></partial>
+        }
+    
+</body> 
+</html>

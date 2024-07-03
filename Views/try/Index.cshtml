@@ -1,0 +1,124 @@
+﻿@using System.Web.Mvc.Html
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager;
+@inject UserManager<IdentityUser> userManager;
+
+
+
+    @* ----profile- *@
+
+
+<html>
+ 
+<head><title></title>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+<style>
+    a.cor , button.cor{
+             background-color:#388da8 !important;
+             border:none !important;
+    }
+
+        a.mybtn  {
+            border-color: #388da8 !important;
+            color:#388da8;
+        }
+
+        a.mybtn:hover {
+                background-color: #388da8;
+        }
+</style>
+</head>
+
+
+
+
+<body  style="height:100vh">
+
+
+
+
+    <section style="background:linear-gradient(-135deg,#5f1db57a, #388da896,#5f1db57a, #ffc1079e) !important;padding-top:78px">
+    <div class="container py-5">
+    
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="~/images/profile.png" alt="avatar"
+                             class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">@User?.Identity.Name</h5>
+                        <p class="text-muted mb-1">Graduated Student</p>
+                        <p class="text-muted mb-4">Palestine Technical University Kaddorie</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary cor mybtn">Profile</button>
+                            <a type="button"   data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1 mybtn">Projects</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">https://portfolio.com</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg text-body"></i>
+                                <p class="mb-0">Github</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <p class="mb-0">Twitter</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">Instagram</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">Facebook</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+             
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body" id="listProjects">
+
+                                    
+                                   
+                             </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get({
+                url: 'Projects/Index',
+                type: 'GET',
+                success: function (result) {
+                    $("#listProjects").html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error: ' + status + error);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

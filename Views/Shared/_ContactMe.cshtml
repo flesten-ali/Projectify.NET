@@ -1,0 +1,83 @@
+﻿@model Practice.Models.ContactModel
+
+
+<html>
+    <head>
+
+
+        <style>
+
+        .contact  {
+            padding: 20px  0;
+            box-shadow: 0 0 4px color-mix(in srgb, var(--default-color), transparent 85%);
+
+        }
+
+        form .form-group   {
+             width:80%; 
+             
+
+        }
+
+        .row.gy-4.align {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        </style>
+    </head>
+    <body>
+
+    <div class="col-lg-6 contact">
+    <form asp-action="ContactMeEmail" asp-controller="Contact">
+
+
+            <div class="row gy-4 align">
+
+
+                <div class="form-group" class="col-md-6" style="margin-top:48px;">
+                     
+                    <input type="text" name="name" class="form-control" placeholder="Your Name"  />
+                </div>
+
+
+             <div class="form-group"  class="col-md-6">
+                 <input asp-for="Subject" class="form-control" placeholder="Subject"/>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group"  class="col-md-6">
+                 <input asp-for="Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group"  class="col-md-12">
+                 <textarea asp-for="Massage" class="form-control" placeholder="Message"></textarea>
+                <span asp-validation-for="Massage" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                    <input type="submit" value="Send" class="btn btn-primary" style="background-color:#388da8" />
+            </div>
+
+
+
+            </div>
+        </form>
+    </div>
+  
+ 
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+     
+        @{
+            <partial name="_ValidationScriptsPartial"></partial>
+        }
+    
+
+</body>
+</html>
+
