@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Db\" />
+    <Folder Include="wwwroot\PDF\" />
   </ItemGroup>
 
   <ItemGroup>
