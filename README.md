@@ -3,7 +3,7 @@
  
    # Projectify
 <br/><br/><br/> 
-
+<a href="https://www.linkedin.com/feed/update/urn:li:activity:7214644728779141123/"> Click for video </a>
  
 ### Class Diagram:<br/><br/><br/> 
  
